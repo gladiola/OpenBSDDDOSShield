@@ -1,0 +1,19 @@
+# ddosshield configuration file
+# Default location: /etc/ddosshield.conf
+#
+# Each non-blank, non-comment line is a key-value pair separated by
+# whitespace.  CLI flags always override values set here.
+
+# Remote syslog server hostname or IP address (required)
+remote_host	192.0.2.1
+
+# UDP port on the remote syslog server (default: 514)
+remote_port	514
+
+# Number of connections from a single source IP within the sampling
+# interval that triggers a DDoS alert (default: 100)
+threshold	100
+
+# Sampling interval in seconds: the state table is polled once per
+# interval and the per-IP counters are reset afterwards (default: 10)
+interval	10
