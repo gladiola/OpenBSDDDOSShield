@@ -17,14 +17,26 @@ over UDP using the RFC 3164 syslog protocol.
 On OpenBSD, `pledge(2)` is used to restrict the process to only the
 privileges it actually needs (`stdio proc exec inet`).
 
+## Prerequisites
+
+* OpenBSD with pf(4) enabled and `pfctl` at `/sbin/pfctl`
+* GNUstep Base and libobjc2 — install with the package manager:
+
+```sh
+pkg_add gnustep-make gnustep-base libobjc2
+```
+
+* The process must have permission to run `pfctl -s state`
+  (typically requires root)
+
 ## Building
 
 ```sh
 make
 ```
 
-The only dependency is the C standard library; no additional packages
-are required.
+The program is written in Objective-C and compiled with `cc` against
+GNUstep Base and `libobjc2`.
 
 ## Installation
 
@@ -97,9 +109,3 @@ Configure the remote syslog server to accept UDP traffic on port 514
 from the OpenBSD host.  For example, with `syslogd(8)` on another
 OpenBSD machine add `-u` to accept remote UDP messages and add a rule
 in `/etc/syslog.conf` to capture `local0.warning` messages.
-
-## Prerequisites
-
-* OpenBSD with pf(4) enabled and `pfctl` in `PATH`
-* The process must have permission to run `pfctl -s state`
-  (typically requires root or `net.inet.ip.forwarding` capability)

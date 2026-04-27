@@ -1,18 +1,21 @@
-PROG=	ddosshield
-SRCS=	ddosshield.c
+CC     = cc
+CFLAGS = -isystem /usr/local/include \
+         -I/usr/local/include/GNUstep \
+         -fobjc-runtime=gnustep-2.0 \
+         -fblocks
+LDFLAGS = -L/usr/local/lib \
+          -lgnustep-base -lobjc2 -lpthread
 
-CC=	cc
-CFLAGS=	-Wall -Wextra -pedantic -std=c99 -O2
+TARGET = ddosshield
+SRC    = ddosshield.m
 
-.PHONY: all clean install
+all: $(TARGET)
 
-all: $(PROG)
+$(TARGET): $(SRC)
+	$(CC) $(CFLAGS) -o $(TARGET) $(SRC) $(LDFLAGS)
 
-$(PROG): $(SRCS)
-	$(CC) $(CFLAGS) -o $(PROG) $(SRCS)
-
-install: $(PROG)
-	install -m 0755 $(PROG) /usr/local/sbin/$(PROG)
+install: $(TARGET)
+	install -m 0755 $(TARGET) /usr/local/sbin/$(TARGET)
 
 clean:
-	rm -f $(PROG)
+	rm -f $(TARGET)
