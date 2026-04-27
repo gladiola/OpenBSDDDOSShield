@@ -159,9 +159,9 @@ info "Cron job installed (runs every 15 minutes)."
 # -----------------------------------------------------------------------------
 # Done
 # -----------------------------------------------------------------------------
-info ""
+echo
 info "=== OpenBSD DDoS Shield is active ==="
-info ""
+echo
 info "Useful commands:"
 info "  pfctl -t ddos_block -T show       — list currently blocked IPs"
 info "  pfctl -t whitelist  -T add <ip>   — whitelist an IP immediately"
@@ -170,6 +170,6 @@ info "  pfctl -t ddos_block -T expire 0   — flush entire block table"
 info "  relayctl show summary             — relayd status overview"
 info "  relayctl show hosts               — backend health status"
 info "  relayctl show sessions            — active relay sessions"
-info ""
+echo
 info "Edit /etc/pf.conf to tune rate limits, then reload with:"
 info "  pfctl -f /etc/pf.conf"
