@@ -106,8 +106,7 @@ static void testDetectorMultipleAttackers(void)
         [data appendFormat:@"%@\n", stateLine(@"1.2.3.4", 10000 + i, @"5.6.7.8", 80)];
     for (NSUInteger i = 0; i < 2; i++)
         [data appendFormat:@"%@\n", stateLine(@"9.9.9.9", 20000 + i, @"5.6.7.8", 80)];
-    for (NSUInteger i = 0; i < 1; i++)
-        [data appendFormat:@"%@\n", stateLine(@"5.5.5.5", 30000 + i, @"5.6.7.8", 80)];
+    [data appendFormat:@"%@\n", stateLine(@"5.5.5.5", 30000, @"5.6.7.8", 80)];
 
     DDOSShieldDetector *detector =
         [[DDOSShieldDetector alloc] initWithConfiguration:config];

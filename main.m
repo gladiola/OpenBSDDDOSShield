@@ -15,10 +15,12 @@
 //
 // Add to root's crontab:
 //
-//   # When HBP is present (--monitor-ddos is already in HBP's crontab):
+//   # When HBP is present — ddos-shield only detects; HBP handles blocking:
 //   */5 * * * * /usr/local/sbin/ddos-shield
+//   */5 * * * * /usr/local/sbin/pf-blocker --monitor-ddos
+//   0   * * * * /usr/local/sbin/pf-blocker --expire-blocks
 //
-//   # When HBP is absent (ddos-shield handles detection and direct blocking):
+//   # When HBP is absent — ddos-shield detects and blocks on its own:
 //   */5 * * * * /usr/local/sbin/ddos-shield
 
 #import <Foundation/Foundation.h>

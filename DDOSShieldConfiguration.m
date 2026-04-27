@@ -2,6 +2,8 @@
 
 #import "DDOSShieldConfiguration.h"
 
+static NSString * const kWhitelistIPPlaceholder = @"www.xxx.yyy.zzz";
+
 @implementation DDOSShieldConfiguration
 
 + (instancetype)defaultConfiguration {
@@ -22,18 +24,18 @@
     // Replace this placeholder with the IP you never want to block (e.g. your
     // own management address).  Source IPs matching this value are skipped.
     // -----------------------------------------------------------------------
-    config.whitelistIP = @"www.xxx.yyy.zzz";
+    config.whitelistIP = kWhitelistIPPlaceholder;
 
     return config;
 }
 
 - (void)warnAboutPlaceholders {
-    if ([_whitelistIP isEqualToString:@"www.xxx.yyy.zzz"]) {
+    if ([_whitelistIP isEqualToString:kWhitelistIPPlaceholder]) {
         NSLog(@"ddos-shield: WARNING: whitelistIP is still set to the placeholder "
-              @"'www.xxx.yyy.zzz'. No address is currently protected from being "
+              @"'%@'. No address is currently protected from being "
               @"blocked. Replace it with your management IP in "
               @"DDOSShieldConfiguration.m and rebuild to avoid accidentally "
-              @"locking yourself out.");
+              @"locking yourself out.", kWhitelistIPPlaceholder);
     }
 }
 
